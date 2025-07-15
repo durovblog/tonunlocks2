@@ -61,7 +61,7 @@ class TONUnlockTracker {
     // Data Loading
     async loadAppData() {
         try {
-            const response = await fetch('https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/cc2d77caed52778a07af0e0929f44f57/31fd8a6c-8675-411e-8f3f-3afe59f1826c/2fe0df27.json');
+            const response = await fetch('app_data.json');
             if (!response.ok) throw new Error('Failed to load app data');
             
             this.appData = await response.json();
