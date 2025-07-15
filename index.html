@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TON Token Unlock Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3/index.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="header-title">TON Token Unlock Tracker</h1>
+                <button class="theme-toggle btn btn--secondary btn--sm" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-toggle-icon">🌙</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Live Metrics Section -->
+        <section class="metrics-section">
+            <h2 class="section-title">Live TON Metrics</h2>
+            <div class="metrics-grid" id="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Current Price</div>
+                    <div class="metric-value" id="ton-price">Loading...</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Market Cap</div>
+                    <div class="metric-value" id="ton-market-cap">Loading...</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">24h Volume</div>
+                    <div class="metric-value" id="ton-volume">Loading...</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Market Rank</div>
+                    <div class="metric-value" id="ton-rank">Loading...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Methodology Section -->
+        <section class="methodology-section">
+            <div class="card">
+                <div class="card__body">
+                    <h3>Methodology</h3>
+                    <p id="methodology-text">TON unlock data is sourced from vesting-wallets.json gathered using DTON GraphQL API. The chart displays cumulative token unlocks over time based on each wallet's vesting schedule. Each wallet has specific parameters: start time, total duration, unlock period, cliff duration, and total amount. Unlocking follows a linear schedule after the cliff period, with tokens being released periodically. This data includes vesting wallets but does not include the TON Believers Fund.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chart Section -->
+        <section class="chart-section">
+            <h2 class="section-title">Cumulative TON Unlocks Over Time</h2>
+            <div class="chart-container">
+                <canvas id="unlock-chart"></canvas>
+            </div>
+        </section>
+
+        <!-- Table Section -->
+        <section class="table-section">
+            <h2 class="section-title">Top Vesting Wallets</h2>
+            <div class="table-container">
+                <table class="wallet-table" id="wallet-table">
+                    <thead>
+                        <tr>
+                            <th class="sortable" data-sort="rank">Rank</th>
+                            <th class="sortable" data-sort="address">Address</th>
+                            <th class="sortable" data-sort="total_amount">Total Amount</th>
+                            <th class="sortable" data-sort="unlocked_amount">Unlocked</th>
+                            <th class="sortable" data-sort="locked_amount">Locked</th>
+                            <th class="sortable" data-sort="start_date">Start Date</th>
+                            <th class="sortable" data-sort="end_date">End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wallet-table-body">
+                        <!-- Table rows will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Data updated on <span id="data-date">2024-11-08</span> | Total wallets: <span id="total-wallets">329</span></p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
